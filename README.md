@@ -113,3 +113,22 @@ GET http://localhost:9200/autocomplete_index/_search
   }
 }
 ```
+
+## 4. Testing Typo Tolerance
+For words with a length of 7 or more, you can set fuzziness up to 3. Here’s an example query that specifies fuzziness to 3 for longer words:
+
+GET http://localhost:9200/autocomplete_index/_search
+```json
+{
+  "query": {
+    "match": {
+      "text": {
+        "query": "application",
+        "fuzziness": 3,
+        "prefix_length": 2,
+        "max_expansions": 50
+      }
+    }
+  }
+}
+```
